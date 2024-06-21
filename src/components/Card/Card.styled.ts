@@ -18,6 +18,25 @@ export const CardWrapper = styled.div`
   }
 `;
 
+export const ButtonsWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2px;
+`;
+
+export const ButtonLike = styled.img`
+  width: 18px;
+  height: 18px;
+`;
+
+export const ButtonDelete = styled.img`
+  width: 34px;
+  height: 32px;
+  fill: transparent;
+  stroke: #d013d0;
+`;
+
 export const CardTop = styled.div`
   flex: 0 0 220px;
   position: relative;
