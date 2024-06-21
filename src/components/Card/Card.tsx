@@ -1,5 +1,14 @@
-import { SVG } from "../SVGImage/SVGImage";
-import { CardBottom, CardImage, CardPrice, CardTitle, CardTop, CardWrapper } from "./Card.styled";
+import {
+  ButtonDelete,
+  ButtonLike,
+  ButtonsWrapper,
+  CardBottom,
+  CardImage,
+  CardPrice,
+  CardTitle,
+  CardTop,
+  CardWrapper,
+} from "./Card.styled";
 
 type Product = {
   category: string;
@@ -14,15 +23,16 @@ type Product = {
 export function Card({ product }: { product: Product }) {
   return (
     <CardWrapper>
-      <SVG url="like" className="like" />
+      <ButtonsWrapper>
+        <ButtonLike src="icon/like.svg" />
+        <ButtonDelete src="icon/cross.svg" />
+      </ButtonsWrapper>
       <CardTop>
         <CardImage src={product.image} alt="product" />
       </CardTop>
       <CardBottom>
         <CardPrice>{product.price}</CardPrice>
-        <CardTitle href="#">
-          {product.title}
-        </CardTitle>
+        <CardTitle href="#">{product.title}</CardTitle>
       </CardBottom>
     </CardWrapper>
   );

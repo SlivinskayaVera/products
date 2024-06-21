@@ -10,20 +10,7 @@ body {
   background-color: #d7d7d7;
 }
 
-.like {
-  /* position: absolute; */
-  width: 24px;
-  height: 22px;
-  fill: transparent;
-  stroke: #d013d0;
-  padding: 5px;
-}
 
-.delete {
-  fill: #020102;
-  stroke: #020102;
-  padding-top: 1px;
-}
 
 .cards {
   display: flex;
