@@ -2,8 +2,8 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Product } from "../../pages/MainPage/MainPage";
 
 type AuthStateType = {
-    products: Product[];
-    favoriteMode: boolean;
+  products: Product[];
+  favoriteMode: boolean;
 };
 
 const initialState: AuthStateType = {
@@ -27,11 +27,17 @@ const productsSlice = createSlice({
         return product;
       });
     },
-    setFavoriteMode: (state) => {
-        state.favoriteMode = !state.favoriteMode;
-    }
+    setFavoriteMode: state => {
+      state.favoriteMode = !state.favoriteMode;
+    },
+    setDeleteProduct: (state, action: PayloadAction<Pick<Product, "id">>) => {
+      state.products = [...state.products].filter(product => {
+        if (product.id !== action.payload.id) return product;
+      });
+    },
   },
 });
 
-export const { setProductsList, setFavoriteProduct, setFavoriteMode} = productsSlice.actions;
+export const { setProductsList, setFavoriteProduct, setFavoriteMode, setDeleteProduct } =
+  productsSlice.actions;
 export const productsReducer = productsSlice.reducer;

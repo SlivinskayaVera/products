@@ -1,5 +1,8 @@
 import { Product } from "../../pages/MainPage/MainPage";
-import { setFavoriteProduct } from "../../store/features/productSlice";
+import {
+  setDeleteProduct,
+  setFavoriteProduct,
+} from "../../store/features/productSlice";
 import { useAppDispatch } from "../../store/hooks";
 import {
   ButtonDelete,
@@ -23,7 +26,10 @@ export function Card({ product }: { product: Product }) {
           onClick={() => dispatch(setFavoriteProduct({ id: product.id }))}
           src={product.isLiked ? "icon/like.svg" : "icon/dislike.svg"}
         />
-        <ButtonDelete src="icon/cross.svg" />
+        <ButtonDelete
+          onClick={() => dispatch(setDeleteProduct({ id: product.id }))}
+          src="icon/cross.svg"
+        />
       </ButtonsWrapper>
       <CardTop>
         <CardImage src={product.image} alt="product" />
