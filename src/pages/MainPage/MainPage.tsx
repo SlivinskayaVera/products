@@ -4,7 +4,10 @@ import { getProducts } from "../../api";
 import { ButtonFilter, CardsWrapper } from "./MainPage.styled";
 import { Loading } from "../../components/Loading/Loading";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { setProductsList } from "../../store/features/productSlice";
+import {
+  setFavoriteMode,
+  setProductsList,
+} from "../../store/features/productSlice";
 
 export type Product = {
   category: string;
@@ -21,6 +24,7 @@ function Main() {
   const [loading, setLoading] = useState(true);
   const dispatch = useAppDispatch();
   const products = useAppSelector(store => store.products.products);
+  const favoriteMode = useAppSelector(store => store.products.favoriteMode);
 
   useEffect(() => {
     getProducts().then(res => {
@@ -34,12 +38,20 @@ function Main() {
         <Loading />
       ) : (
         <>
-          <ButtonFilter onClick={() => console.log("object")}>
-            Показать избранное
+          <ButtonFilter
+            onClick={() => {
+              dispatch(setFavoriteMode());
+            }}
+          >
+            {favoriteMode ? "Показать всё" : "Показать избранное"}
           </ButtonFilter>
-          <CardsWrapper>
+          <CardsWrapper id="card-content">
             {products.map(product => {
-              return <Card key={product.id} product={product} />;
+              if (favoriteMode && product.isLiked)
+                return <Card key={product.id} product={product} />;
+
+              if (!favoriteMode)
+                return <Card key={product.id} product={product} />;
             })}
           </CardsWrapper>
         </>

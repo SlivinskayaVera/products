@@ -41,6 +41,7 @@ export const ButtonFilter = styled.button`
   font-size: 18px;
 
   &:focus {
+    outline: none;
     box-shadow:
       #3c4fe0 0 0 0 1.5px inset,
       rgba(45, 35, 66, 0.4) 0 2px 4px,

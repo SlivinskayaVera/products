@@ -3,10 +3,12 @@ import { Product } from "../../pages/MainPage/MainPage";
 
 type AuthStateType = {
     products: Product[];
+    favoriteMode: boolean;
 };
 
 const initialState: AuthStateType = {
   products: [],
+  favoriteMode: false,
 };
 
 const productsSlice = createSlice({
@@ -25,8 +27,11 @@ const productsSlice = createSlice({
         return product;
       });
     },
+    setFavoriteMode: (state) => {
+        state.favoriteMode = !state.favoriteMode;
+    }
   },
 });
 
-export const { setProductsList, setFavoriteProduct } = productsSlice.actions;
+export const { setProductsList, setFavoriteProduct, setFavoriteMode} = productsSlice.actions;
 export const productsReducer = productsSlice.reducer;
