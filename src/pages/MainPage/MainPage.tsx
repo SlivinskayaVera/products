@@ -3,6 +3,8 @@ import { Card } from "../../components/Card/Card";
 import { getProducts } from "../../api";
 import { ButtonFilter, CardsWrapper } from "./MainPage.styled";
 import { Loading } from "../../components/Loading/Loading";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { setProductsList } from "../../store/features/productSlice";
 
 export type Product = {
   category: string;
@@ -15,14 +17,15 @@ export type Product = {
 };
 
 function Main() {
-  const [productList, setProductList] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
+  const dispatch = useAppDispatch();
+  const products = useAppSelector(store => store.products.products);
 
   useEffect(() => {
     getProducts().then(res => {
-      setProductList(res), setLoading(false);
+      dispatch(setProductsList(res)), setLoading(false);
     });
-  }, []);
+  }, [dispatch]);
 
   return (
     <>
@@ -30,9 +33,11 @@ function Main() {
         <Loading />
       ) : (
         <>
-          <ButtonFilter onClick={() => console.log("object")}>Показать только избранное</ButtonFilter>
+          <ButtonFilter onClick={() => console.log("object")}>
+            Показать избранное
+          </ButtonFilter>
           <CardsWrapper>
-            {productList.map(product => {
+            {products.map(product => {
               return <Card key={product.id} product={product} />;
             })}
           </CardsWrapper>
