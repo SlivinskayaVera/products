@@ -1,3 +1,6 @@
+import { Product } from "../../pages/MainPage/MainPage";
+import { setFavoriteProduct } from "../../store/features/productSlice";
+import { useAppDispatch } from "../../store/hooks";
 import {
   ButtonDelete,
   ButtonLike,
@@ -10,21 +13,16 @@ import {
   CardWrapper,
 } from "./Card.styled";
 
-type Product = {
-  category: string;
-  description: string;
-  id: number;
-  image: string;
-  price: number;
-  rating: { rate: number; count: number };
-  title: string;
-};
-
 export function Card({ product }: { product: Product }) {
+  const dispatch = useAppDispatch();
+
   return (
     <CardWrapper>
       <ButtonsWrapper>
-        <ButtonLike src="icon/like.svg" />
+        <ButtonLike
+          onClick={() => dispatch(setFavoriteProduct({ id: product.id }))}
+          src={product.isLiked ? "icon/like.svg" : "icon/dislike.svg"}
+        />
         <ButtonDelete src="icon/cross.svg" />
       </ButtonsWrapper>
       <CardTop>

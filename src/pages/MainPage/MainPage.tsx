@@ -14,6 +14,7 @@ export type Product = {
   price: number;
   rating: { rate: number; count: number };
   title: string;
+  isLiked: boolean;
 };
 
 function Main() {
