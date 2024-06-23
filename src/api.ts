@@ -1,5 +1,4 @@
-import { Product } from "./App";
-
+import { Product } from "./pages/MainPage/MainPage";
 
 export async function getProducts() {
     const response = await fetch("https://fakestoreapi.com/products");
