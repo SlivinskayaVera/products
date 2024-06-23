@@ -1,34 +1,17 @@
-import { useEffect, useState } from "react";
 import "./App.css";
-import { getProducts } from "./api";
-import { Card } from "./components/Card/Card";
-
-export type Product = {
-  category: string;
-  description: string;
-  id: number;
-  image: string;
-  price: number;
-  rating: { rate: number; count: number };
-  title: string;
-};
+import { Route, Routes } from "react-router";
+import { AppRoutes } from "./pages/appRoutes";
+import Main from "./pages/MainPage/MainPage";
+import Error404 from "./pages/NotFoundPage/Error404";
 
 function App() {
-  const [productList, setProductList] = useState<Product[]>([]);
-
-  useEffect(() => {
-    getProducts().then(res => setProductList(res));
-  }, []);
-
   return (
-    <>
-    <button>Показать только избранное</button>
-      <div className="cards">
-        {productList.map(product => {
-          return <Card key={product.id} product={product} />;
-        })}
-      </div>
-    </>
+    <Routes>
+      <Route path={AppRoutes.HOME} element={<Main />} />
+
+      {/* <Route path={AppRoutes.PRODUCTS} element={<SingInPage />} /> */}
+      <Route path={AppRoutes.NOT_FOUND} element={<Error404 />} />
+    </Routes>
   );
 }
 
