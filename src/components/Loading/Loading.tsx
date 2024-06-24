@@ -1,9 +1,11 @@
+import { LoaderElement, LoaderWrapper } from "./Loading.styled";
+
 export function Loading() {
   return (
-    <div className="loader">
-      <span className="loader__element"></span>
-      <span className="loader__element"></span>
-      <span className="loader__element"></span>
-    </div>
+    <LoaderWrapper>
+      <LoaderElement />
+      <LoaderElement />
+      <LoaderElement />
+    </LoaderWrapper>
   );
 }
