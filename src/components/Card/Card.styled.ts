@@ -67,21 +67,7 @@ export const CardBottom = styled.div`
   padding: 10px;
 `;
 
-export const CardPrice = styled.div`
-  font-weight: 700;
-  font-size: 19px;
-  color: #414141;
-  display: flex;
-  flex-wrap: wrap-reverse;
-
-  &::after {
-    content: "$";
-    margin-left: 4px;
-    position: relative;
-  }
-`;
-
-export const CardTitle = styled.a`
+export const CardTitle = styled.p`
   display: block;
   margin-bottom: 10px;
   font-weight: 400;

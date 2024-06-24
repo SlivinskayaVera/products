@@ -4,11 +4,13 @@ import { Product } from "../../pages/MainPage/MainPage";
 type AuthStateType = {
   products: Product[];
   favoriteMode: boolean;
+  dynamicProduct: Product | undefined;
 };
 
 const initialState: AuthStateType = {
   products: [],
   favoriteMode: false,
+  dynamicProduct: undefined,
 };
 
 const productsSlice = createSlice({
@@ -20,9 +22,12 @@ const productsSlice = createSlice({
         return { ...product, isLiked: false };
       });
     },
-    setFavoriteProduct: (state, action: PayloadAction<Pick<Product, "id">>) => {
+    setFavoriteProduct: (
+      state,
+      action: PayloadAction<{id: number | undefined}>,
+    ) => {
       state.products = [...state.products].map(product => {
-        if (product.id === action.payload.id)
+        if (product.id === action.payload?.id)
           return { ...product, isLiked: !product.isLiked };
         return product;
       });
@@ -30,14 +35,27 @@ const productsSlice = createSlice({
     setFavoriteMode: state => {
       state.favoriteMode = !state.favoriteMode;
     },
-    setDeleteProduct: (state, action: PayloadAction<Pick<Product, "id">>) => {
-      state.products = [...state.products].filter(product => {
+    setDeleteProduct: (state, action: PayloadAction<{id: number | undefined}>) => {
+      state.products = state.products.filter(product => {
         if (product.id !== action.payload.id) return product;
+      });
+    },
+    setDynamicProductPage: (
+      state,
+      action: PayloadAction<Pick<Product, "id">>,
+    ) => {
+      state.dynamicProduct = state.products.find(product => {
+        if (product.id === action.payload.id) return product;
       });
     },
   },
 });
 
-export const { setProductsList, setFavoriteProduct, setFavoriteMode, setDeleteProduct } =
-  productsSlice.actions;
+export const {
+  setProductsList,
+  setFavoriteProduct,
+  setFavoriteMode,
+  setDeleteProduct,
+  setDynamicProductPage,
+} = productsSlice.actions;
 export const productsReducer = productsSlice.reducer;
