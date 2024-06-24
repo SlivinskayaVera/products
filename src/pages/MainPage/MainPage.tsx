@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import { Card } from "../../components/Card/Card";
 import { getProducts } from "../../api";
-import { ButtonFilter, CardsWrapper } from "./MainPage.styled";
+import { CardsWrapper } from "./MainPage.styled";
 import { Loading } from "../../components/Loading/Loading";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import {
   setFavoriteMode,
   setProductsList,
 } from "../../store/features/productSlice";
+import { Button } from "../../common/CommonComponents.styled";
 
 export type Product = {
   category: string;
@@ -38,13 +39,13 @@ function Main() {
         <Loading />
       ) : (
         <>
-          <ButtonFilter
+          <Button
             onClick={() => {
               dispatch(setFavoriteMode());
             }}
           >
             {favoriteMode ? "Показать всё" : "Показать избранное"}
-          </ButtonFilter>
+          </Button>
           <CardsWrapper id="card-content">
             {products.map(product => {
               if (favoriteMode && product.isLiked)

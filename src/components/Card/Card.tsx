@@ -1,6 +1,8 @@
+import { Link } from "react-router-dom";
 import { Product } from "../../pages/MainPage/MainPage";
 import {
   setDeleteProduct,
+  setDynamicProductPage,
   setFavoriteProduct,
 } from "../../store/features/productSlice";
 import { useAppDispatch } from "../../store/hooks";
@@ -10,34 +12,46 @@ import {
   ButtonsWrapper,
   CardBottom,
   CardImage,
-  CardPrice,
   CardTitle,
   CardTop,
   CardWrapper,
 } from "./Card.styled";
+import { ProductPrice } from "../../common/CommonComponents.styled";
 
 export function Card({ product }: { product: Product }) {
   const dispatch = useAppDispatch();
 
   return (
-    <CardWrapper>
-      <ButtonsWrapper>
-        <ButtonLike
-          onClick={() => dispatch(setFavoriteProduct({ id: product.id }))}
-          src={product.isLiked ? "icon/like.svg" : "icon/dislike.svg"}
-        />
-        <ButtonDelete
-          onClick={() => dispatch(setDeleteProduct({ id: product.id }))}
-          src="icon/cross.svg"
-        />
-      </ButtonsWrapper>
-      <CardTop>
-        <CardImage src={product.image} alt="product" />
-      </CardTop>
-      <CardBottom>
-        <CardPrice>{product.price}</CardPrice>
-        <CardTitle href="#">{product.title}</CardTitle>
-      </CardBottom>
-    </CardWrapper>
+    <Link
+      to={`/products/${product.id}`}
+      onClick={() => dispatch(setDynamicProductPage({ id: product.id }))}
+    >
+      <CardWrapper>
+        <ButtonsWrapper>
+          <ButtonLike
+            onClick={e => {
+              e.preventDefault();
+
+              dispatch(setFavoriteProduct({ id: product.id }));
+            }}
+            src={product.isLiked ? "icon/like.svg" : "icon/dislike.svg"}
+          />
+          <ButtonDelete
+            onClick={e => {
+              e.preventDefault();
+              dispatch(setDeleteProduct({ id: product.id }));
+            }}
+            src="icon/cross.svg"
+          />
+        </ButtonsWrapper>
+        <CardTop>
+          <CardImage src={product.image} alt="product" />
+        </CardTop>
+        <CardBottom>
+          <ProductPrice>{product.price}</ProductPrice>
+          <CardTitle>{product.title}</CardTitle>
+        </CardBottom>
+      </CardWrapper>
+    </Link>
   );
 }
