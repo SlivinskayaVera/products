@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const MainWrapper = styled.div`
+export const MainWrapper = styled.main`
   display: flex;
   flex-wrap: wrap;
   width: 100%;
@@ -14,20 +14,14 @@ export const MainWrapper = styled.div`
 
 export const ContentWrapper = styled.div`
   max-width: 625px;
-  /* height: 350px; */
   box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   border-radius: 20px;
-  transition: 0.2s;
   position: relative;
   overflow: hidden;
   background-color: #fff;
   padding: 5px;
-
-  &:hover {
-    box-shadow: 4px 8px 16px rgba(100, 99, 99, 0.2);
-  }
 
   @media (max-width: 475px) {
     width: 275px;
@@ -59,6 +53,11 @@ export const ContentBottom = styled.div`
   padding: 10px;
 `;
 
+export const RatingWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center
+`;
 export const ProductTitle = styled.p`
   margin-bottom: 10px;
   font-weight: 400;

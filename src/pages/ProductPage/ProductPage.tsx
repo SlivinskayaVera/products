@@ -7,6 +7,7 @@ import {
   ContentWrapper,
   Description,
   MainWrapper,
+  RatingWrapper,
 } from "./ProductPage.styled";
 import { useNavigate } from "react-router-dom";
 import { Button, ProductPrice } from "../../common/CommonComponents.styled";
@@ -26,8 +27,10 @@ export function ProductPage() {
           </ContentTop>
           <ContentBottom>
             <div>
-              <span>{dynamicProduct?.rating.rate} / 5 </span>
-              <StarRating />
+              <RatingWrapper>
+                <span>{dynamicProduct?.rating.rate} / 5 </span>
+                <StarRating />
+              </RatingWrapper>
               <ProductPrice>{dynamicProduct?.price}</ProductPrice>
             </div>
             <ProductTitle>{dynamicProduct?.title}</ProductTitle>

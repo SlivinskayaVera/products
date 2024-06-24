@@ -46,7 +46,7 @@ function Main() {
           >
             {favoriteMode ? "Показать всё" : "Показать избранное"}
           </Button>
-          <CardsWrapper id="card-content">
+          <CardsWrapper>
             {products.map(product => {
               if (favoriteMode && product.isLiked)
                 return <Card key={product.id} product={product} />;

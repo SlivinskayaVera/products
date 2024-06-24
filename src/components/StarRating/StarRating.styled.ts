@@ -16,7 +16,7 @@ export const StarRating = styled.i`
   border-left: 0.3em solid transparent;
 
   /* Controlls the size of the stars. */
-  font-size: 12px;
+  font-size: 8px;
 
   &:before,
   &:after {
@@ -27,7 +27,7 @@ export const StarRating = styled.i`
     height: 0;
 
     position: absolute;
-    top: 0.6em;
+    top: 0.5em;
     left: -1em;
 
     border-right: 1em solid transparent;
