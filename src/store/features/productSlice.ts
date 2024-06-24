@@ -1,13 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Product } from "../../pages/MainPage/MainPage";
 
-type AuthStateType = {
+type ProductStateType = {
   products: Product[];
   favoriteMode: boolean;
   dynamicProduct: Product | undefined;
 };
 
-const initialState: AuthStateType = {
+const initialState: ProductStateType = {
   products: [],
   favoriteMode: false,
   dynamicProduct: undefined,
